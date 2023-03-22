@@ -1,8 +1,11 @@
 RewriteEngine On
 RewriteBase /
 
-RewriteRule ^/?_/([^/]+)/(.+)$ $2 [NC]
+RewriteRule "^_/([^/]+)/(.+)$" "$2?c=$1&n=$2" [NC,QSA]
+#RewriteRule ^_/[^/]+/(.*)/([^/]+)\.(mpd|m3u)$ /wiimc/info.php?t=$3&q=$2&u=$0 [NC,QSA]
+#RewriteRule "^(.*)/([^/]+)\.(mpd|m3u)$" "/wiimc/info.php?u=$0&v=$1&t=$3&q=$2" [NC,QSA]
+RewriteRule "([^/]+)\.(mpd|m3u)$" "/video/mediatheques/index.php?u=$0&t=$2&q=$1" [NC,QSA]
 
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.*)$ $1.php [L]
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME}.php -f
+#RewriteRule ^(.*)$ $1.php

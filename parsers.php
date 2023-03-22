@@ -51,7 +51,8 @@ class parsers
                     }
 
                     $host = "http://".$_SERVER['SERVER_NAME'];
-                    print("File".$this->index."=".$host.Creds::$creds_uri.parsers::$video_url."?q=".$docid."\n");
+                    //print("File".$this->index."=".$host.Creds::$creds_uri.parsers::$video_url."?q=".$docid."\n");
+                    print("File".$this->index."=".$host.Creds::$creds_uri.parsers::$video_url.$docid.".m3u\n");
                     print("Title".$this->index."=".$title."\n");
                     if($author != "") {
                         print("Author".$this->index."=".$author."\n");

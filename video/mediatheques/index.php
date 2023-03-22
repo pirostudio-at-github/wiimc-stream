@@ -13,6 +13,10 @@ if( !isset($_GET['q']) ) {
     header('HTTP/1.1 404 Not Found');
     die(0);
 }
+if(isset($_GET['info'])){
+	phpinfo(INFO_VARIABLES);
+	die(0);
+}
 
 $docid = $_GET['q'];
 Creds::$creds;
@@ -105,9 +109,12 @@ $dash_headers = [
 "Cache-Control" => "no-cache",
 ];
 
+file_put_contents("video_log.json",$video_resp);
+
 $licensing_key = $video_resp_data->bmvsetup->key;
 $licensing_analytic_key = $video_resp_data->bmvsetup->analytics->key;
 $dash = $video_resp_data->bmvsources->dash;
+$hls = $video_resp_data->bmvsources->hls;
 
 $licensing_analyt = "https://analytics-ingress-global.bitmovin.com/licensing";
 $licensing_analyt_data = ["analyticsVersion"=>"v2.29.1","domain"=>"paysvoironnais.mediatheques.fr","key"=>$licensing_analytic_key];
@@ -137,12 +144,17 @@ $lic_resp = $bitmovin->post($licensing,$licens_data);
 
 }
 $bitmovin->headers = $dash_headers;
-$dash_resp = $bitmovin->get($dash);
-//var_dump($dash_resp);
+if ( $_GET['t'] == 'mpd') {
+	$dash_resp = $bitmovin->get($dash);
+}
+if ( $_GET['t'] == 'm3u') {
+	$dash_resp = $bitmovin->get($hls);
+}
+		//var_dump($dash_resp);
 
 header("Content-Type: application/dash+xml;charset=UTF-8;");
 // Il sera nommé downloaded.pdf
-header('Content-Disposition: attachment; filename="stream-'.$docid.'.mpd"');
+header('Content-Disposition: attachment; filename="stream-'.$docid.'.'.$_GET['t']);
 
 print($dash_resp);
 

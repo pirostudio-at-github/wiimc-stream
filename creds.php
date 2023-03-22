@@ -24,6 +24,11 @@ class Creds {
         Creds::$creds_uri = "/_/".Creds::$code;
         Creds::$creds = explode("#",Crypto::decrypt(urldecode(Creds::$code)));    
     }
+    public static function updateWithCode($code) {
+        Creds::$code = $code;
+        Creds::$creds_uri = "/_/".Creds::$code;
+        Creds::$creds = explode("#",Crypto::decrypt(urldecode(Creds::$code)));    
+    }
 }
 function extractCreds($bla) {
     if(isset($bla)) {
@@ -34,7 +39,11 @@ function extractCreds($bla) {
     return "";
 }
 
-if(isset($_SERVER['REQUEST_URI'])) {
+if(isset($_GET['c'])) {
+    Creds::updateWithCode($_GET['c']);
+}
+
+else if(isset($_SERVER['REQUEST_URI'])) {
     Creds::updateWithUrl($_SERVER['REQUEST_URI']);
 }
 
