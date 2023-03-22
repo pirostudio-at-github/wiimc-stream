@@ -7,7 +7,6 @@ require_once('creds.php');
 class parsers
 {
     private $index;
-    private static $video_host="http://localhost";
     private static $video_url="/video/mediatheques/";
 
     public function __construct() {
@@ -51,7 +50,8 @@ class parsers
                         }
                     }
 
-                    print("File".$this->index."=".parsers::$video_host.Creds::$creds_uri.parsers::$video_url."?q=".$docid."\n");
+                    $host = "http://".$_SERVER['SERVER_NAME'];
+                    print("File".$this->index."=".$host.Creds::$creds_uri.parsers::$video_url."?q=".$docid."\n");
                     print("Title".$this->index."=".$title."\n");
                     if($author != "") {
                         print("Author".$this->index."=".$author."\n");

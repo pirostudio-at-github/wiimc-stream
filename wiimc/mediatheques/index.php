@@ -3,6 +3,11 @@ require_once('../../creds.php');
 require_once('../../parsers.php');
 use Curl\Curl;
 
+if ( Creds::getMediaUser() == "" ) {
+    header("Location: /config.php", TRUE, 302);
+    die(0);
+}
+
 $cinema = "https://paysvoironnais.mediatheques.fr/cinema";
 
 $curl = new Curl();
@@ -34,12 +39,6 @@ function parseSectionPages($conn, $parser, $section, $limit = 20) {
             break;
         }
     } while($data);
-}
-
-
-if ( Creds::$creds == "" ) {
-    header("Location: /config.php", TRUE, 302);
-    die(0);
 }
 
 header("Content-Type: text/plain;charset=UTF-8;");

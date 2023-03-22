@@ -14,8 +14,7 @@ require_once("crypto.php");
 
 if (isset($_GET["username"])) {
     $code = Crypto::encrypt($_GET["username"]."#".$_GET["pass"]);
-    print("<p>http://localhost/_/".urlencode($code)."/wiimc");
-    print("<p>".Crypto::decrypt($code));
+    print("<p>http://".$_SERVER['SERVER_NAME']."/_/".urlencode($code)."/wiimc");
 } else {
     print("No code !");
 }
