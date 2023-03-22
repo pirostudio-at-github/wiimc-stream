@@ -1,0 +1,7 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "^7.5",
+        "masterminds/html5": "^2.7",
+        "curl/curl": "^2.5"
+    }
+}
