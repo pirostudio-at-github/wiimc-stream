@@ -4,7 +4,9 @@ require_once('../../parsers.php');
 use Curl\Curl;
 
 if ( Creds::getMediaUser() == "" ) {
-    header("Location: /config.php", TRUE, 302);
+    print("<H2> No Credential </h2>");
+    print("Please build path in <a href=\"http://".$_SERVER['SERVER_NAME']."/config\">configuration</a>");
+    //header("Location: /config.php", TRUE, 302);
     die(0);
 }
 
