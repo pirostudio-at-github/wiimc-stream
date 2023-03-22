@@ -6,7 +6,11 @@ Wii-Stream
 
 Hosting
 -------
-This version is hoted on http://wii-stream.pirostudio.fr
+This version is hosted on http://wiistream.pirostudio.fr
+
+youtube video playlist : http://wiistream.pirostudio.fr/wiimc
+
+mediatheques credential config : http://wiistream.pirostudio.fr/config
 
 Description
 -----------
@@ -16,10 +20,10 @@ The purpose is to offer an access to some restricted VOD platform with credentia
 
 For now it does : 
 - forward the work of RiiConnect and redirect to his server.
-- give list and search for VOD on paysvoironnais.mediatheques.fr
 
 Remaining work
 --------------
+- FIXME : .htaccess not working on production server
 - get WiiMC interpret MPD Mpeg-Dash files and handle this
 
 OR
