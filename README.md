@@ -1,4 +1,4 @@
-Wii-Stream
+WiiMC-Stream
 ==========
 
 *Inspired by RiiTube orignaly written in python* https://github.com/RiiConnect24/RiiTube 
